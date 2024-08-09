@@ -165,14 +165,14 @@ test_data <- data[-indices, ]
 #### Linear Regression Model:
 
 ```{r}
-lr_model <- lm(charges ~ ., data = data)
+lr_model <- lm(charges ~ ., data = train_data)
 summary(lr_model)
 ```
 
-**Comment:** From the summary we can see that the p-value for the coefficient of the variable 'sex' is almost 0.7 which is significantly high(>>0.05), specifying that it doesn't affect the response variable 'charges'. So now we will rebuild the model droping the variable 'sex'.
+**Comment:** From the summary we can see that the p-value for the coefficient of the variable 'sex' is 0.96 which is significantly high(>>0.05), specifying that it doesn't affect the response variable 'charges'. So now we will rebuild the model dropping the variable 'sex'.
 
 ```{r}
-lr_model2 <- lm(charges ~ . -sex, data = data)
+lr_model2 <- lm(charges ~ . -sex, data = train_data)
 summary(lr_model2)
 ```
 
@@ -259,4 +259,4 @@ cat("Training RMSE: ", rf_rmse_train, "\nTraining R-squared: ", rf_rsquared_trai
 ```
 
 ### Conclusion 
-After fitting and checking the performance of all the models, We can see that the accuracy in training is 74%, 83%, and 93% for linear regression, decision tree and random forest model, specifying the superiority of the random forest model over the other two models while training with the train data. On the other hand in terms of predicting, the accuracy of the linear regression model and the decision tree model slightly increases to 77% and 86% respectively, while the accuracy of the random forest model decreases to 87% which is still better than the other two models.
+After fitting and checking the performance of all the models, We can see that the accuracy in training is 74%, 83%, and 93% for linear regression, decision tree and random forest model respectively, specifying the superiority of the random forest model over the other two models while training with the train data. On the other hand in terms of predicting, the accuracy of the linear regression model and the decision tree model slightly increases to 77% and 86% respectively, while the accuracy of the random forest model decreases to 87% which is still better than the other two models. So we come to the conclusion that **Random Forest Model** is the best among all the models.
